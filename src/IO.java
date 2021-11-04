@@ -6,24 +6,17 @@ import java.util.Scanner;
 public class IO {
     Scanner scanner;
 
-
-
-    //Todo: Read and write .CSV files
-
     void fileScanner() throws FileNotFoundException {
 
         File file = new File("Data/Turnering.CSV");
-
         scanner = new Scanner(file);
         scanner.useDelimiter(",|\\n");
         String teamName = "", player1 = "", player2 = "";
         int ID = 0;
 
-        System.out.println("kkkkkkk");
 
         try{
             while (scanner.hasNext()) {
-
                 ID = scanner.nextInt();
                 teamName = scanner.next();
                 player1 = scanner.next();
@@ -35,10 +28,5 @@ public class IO {
         catch (InputMismatchException e){
             System.out.println("Scanner has problems");
         }
-
     }
-
-
-
-
 }
