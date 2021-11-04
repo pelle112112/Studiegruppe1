@@ -12,6 +12,8 @@ public abstract class Tournament {
 
     public abstract void updateTournament();
 
+    public abstract void addTeamtoArraylist(Team team);
+
 
 
 
