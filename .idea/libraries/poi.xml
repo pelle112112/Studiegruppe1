@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="poi" type="repository">
+    <properties maven-id="poi:poi:2.5.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/poi-2.5.1-final-20040804.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
