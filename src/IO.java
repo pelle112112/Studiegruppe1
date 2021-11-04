@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class IO {
@@ -12,21 +13,27 @@ public class IO {
     void fileScanner() throws FileNotFoundException {
 
         File file = new File("Data/Turnering.CSV");
-        scanner.useDelimiter(";");
+
         scanner = new Scanner(file);
-        String inputFromFile = "";
+        scanner.useDelimiter(",|\\n");
+        String teamName = "", player1 = "", player2 = "";
         int ID = 0;
 
         System.out.println("kkkkkkk");
 
+        try{
+            while (scanner.hasNext()) {
 
-        while (scanner.hasNext()){
-            System.out.println("er vi her");
+                ID = scanner.nextInt();
+                teamName = scanner.next();
+                player1 = scanner.next();
+                player2 = scanner.next();
+                System.out.println("ID = " + ID + " teamname = " + teamName + " player 1 = " + player1 + " Player 2 = " + player2);
 
-            ID = scanner.nextInt();
-            inputFromFile += scanner.next();
-
-
+            }
+        }
+        catch (InputMismatchException e){
+            System.out.println("Scanner has problems");
         }
 
     }
