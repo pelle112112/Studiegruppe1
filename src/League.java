@@ -9,6 +9,8 @@ public class League extends Tournament{
     @Override
     public void createTournament() {
 
+        League league1 = new League();
+
     }
 
     @Override

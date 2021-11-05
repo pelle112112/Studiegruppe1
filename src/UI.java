@@ -14,7 +14,6 @@ public class UI {
 
     void interact() throws IOException {
 
-        System.out.println("Welcome to the tournament registration");
         System.out.println("Press 'q' to add a new team or press 'g' to generate a new tournament");
 
         String input = "";
@@ -22,7 +21,6 @@ public class UI {
         input = scan.nextLine();
 
         if(input.contains("q")){
-            System.out.println("you have added a new team!");
             UIInteraction = 1;
 
         }
@@ -50,8 +48,6 @@ public class UI {
         Scanner scan = new Scanner(System.in);
 
 
-
-
         System.out.println("Enter the name of the team: ");
         this.teamName = scan.nextLine();
 
@@ -62,9 +58,4 @@ public class UI {
         this.player2 = scan.nextLine();
 
     }
-
-
-
-
-
 }

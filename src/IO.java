@@ -9,18 +9,25 @@ public class IO {
 
         File file = new File("Data/Tournament.CSV");
         scanner = new Scanner(file);
+        Team teamCreater = new Team();
+        Match matchCreater = new Match();
         scanner.useDelimiter(",|\\n");
+
+
         String teamName = "", player1 = "", player2 = "";
         int ID = 0;
-
-
         try{
             while (scanner.hasNext()) {
                 ID = scanner.nextInt();
                 teamName = scanner.next();
                 player1 = scanner.next();
                 player2 = scanner.next();
-                System.out.println("ID = " + ID + " teamname = " + teamName + " player 1 = " + player1 + " Player 2 = " + player2);
+                //System.out.println("ID = " + ID + " teamname = " + teamName + " player 1 = " + player1 + " Player 2 = " + player2);
+                teamCreater.createTeam(ID,teamName,player1,player2);
+
+                System.out.println("Holdnavn: " + teamName);
+
+
 
             }
         }
@@ -31,8 +38,6 @@ public class IO {
 
     void fileWriter() throws IOException {
 
-
-
         UI ui = new UI();
         ui.teamUserInput();
         File file = new File("Data/Tournament.CSV");
@@ -40,12 +45,13 @@ public class IO {
         scanner.useDelimiter(",|\\n");
         FileWriter filewriter = new FileWriter(file, true);
         BufferedWriter out = new BufferedWriter(filewriter);
-        int ID = 0, tmpID = 0;
+        int ID = 0;
+
+        //todo: Ordn ID, så det tæller op for hver person
 
         StringBuilder stringToFile = new StringBuilder();
 
-
-        out.append(Integer.toString(ID)+",");
+        out.append(ID+",");
 
         System.out.println(ui.teamName);
         out.append(ui.teamName);
@@ -54,8 +60,6 @@ public class IO {
         out.append(',');
         out.append(ui.player2);
         out.append("\n");
-
-
         out.write(stringToFile.toString());
         out.close();
 
