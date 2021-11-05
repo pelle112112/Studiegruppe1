@@ -34,12 +34,13 @@ public class Team {
 
         Team team = new Team(tmpTeamName, tmpPlayer1Name, tmpPlayer2Name, tmpID);
         tourney1.addTeamtoArraylist(team);
-        System.out.println("Team: " + tmpID + " " + team.toString());
+        System.out.println("Team: " + tmpID + " " + tourney1.toString());
     }
 
     ArrayList<Team> arrayParser (){
-
+        System.out.println("ARRAY PARSER: " + tourney1);
         return tourney1.teamsArrayList;
+
     }
 
 }
