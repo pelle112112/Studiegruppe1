@@ -44,6 +44,8 @@ public class Main {
 
                 //todo: create League tournament
                 break;
+
+            //todo: Create a 4th option for the user to change the matchresult
         }
 
     }
