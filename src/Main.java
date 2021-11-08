@@ -8,7 +8,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Match matchCreator = new Match();
         KnockOut knock = new KnockOut();
         League league = new League();
         Team teamCreater = new Team();
@@ -31,7 +30,7 @@ public class Main {
                 break;
             case 2:
                 knock.createTournament();
-                teamArrayList = io.fileScanner();
+
 
                 System.out.println(teamArrayList.toString());
 

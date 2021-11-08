@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class KnockOut extends Tournament{
@@ -9,21 +10,22 @@ public class KnockOut extends Tournament{
     ArrayList<Team> teamsArrayList= new ArrayList<Team>();
     ArrayList <Match> matchesArrayList= new ArrayList<Match>();
 
-
-
-
-
-
-
-
-
-
-
-
     @Override
-    public void createTournament() {
+    public void createTournament() throws FileNotFoundException {
         //todo: create knockout tournament
-        KnockOut knockout1 = new KnockOut();
+
+        teamsArrayList = io.fileScanner();
+        int v1 = 0, v2 = 1;
+
+        while(teamsArrayList.iterator().hasNext() && v1 != 16){
+            matchesArrayList.add(new Match(teamsArrayList.get(v1), teamsArrayList.get(v2)));
+            v1+= 2;
+            v2+=2;
+
+        }
+        System.out.println("Matches: " + matchesArrayList);
+        updateTournament();
+
     }
 
     @Override
@@ -33,6 +35,13 @@ public class KnockOut extends Tournament{
 
     @Override
     public void updateTournament() {
+
+        int variabel = 0;
+        for(int i = 0; i< teamsArrayList.size(); i++){
+            if(teamsArrayList.get(variabel).isInTournament == false){
+                teamsArrayList.remove(variabel);
+            }
+        }
 
     }
 

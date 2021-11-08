@@ -14,7 +14,6 @@ public class IO {
         File file = new File("Data/Tournament.CSV");
         scanner = new Scanner(file);
         Team teamCreater = new Team();
-        Match matchCreater = new Match();
         scanner.useDelimiter(",|\\n");
 
 
@@ -26,6 +25,7 @@ public class IO {
                 teamName = scanner.next();
                 player1 = scanner.next();
                 player2 = scanner.next();
+
 
                 teamArrayList.add(new Team (teamName, player1, player2, ID));
 
