@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -6,6 +7,9 @@ public class IO {
     Scanner scanner;
 
     void fileScanner() throws FileNotFoundException {
+
+
+        ArrayList <Team> teamArrayList= new ArrayList<>();
 
         File file = new File("Data/Tournament.CSV");
         scanner = new Scanner(file);
@@ -22,14 +26,15 @@ public class IO {
                 teamName = scanner.next();
                 player1 = scanner.next();
                 player2 = scanner.next();
-                //System.out.println("ID = " + ID + " teamname = " + teamName + " player 1 = " + player1 + " Player 2 = " + player2);
-                teamCreater.createTeam(ID,teamName,player1,player2);
 
-                System.out.println("Holdnavn: " + teamName);
+                teamArrayList.add(new Team (teamName, player1, player2, ID));
+
+
 
 
 
             }
+            System.out.println("arraylist: " + teamArrayList);
         }
         catch (InputMismatchException e){
             System.out.println("Scanner has problems");

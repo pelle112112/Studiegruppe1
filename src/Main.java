@@ -32,9 +32,7 @@ public class Main {
             case 2:
                 knock.createTournament();
                 io.fileScanner();
-                teamArrayList = teamCreater.arrayParser();
 
-                    System.out.println("teamArraylist: " + teamArrayList);
 
 
                 //todo: create knockout tournament
