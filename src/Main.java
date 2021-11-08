@@ -31,7 +31,9 @@ public class Main {
                 break;
             case 2:
                 knock.createTournament();
-                io.fileScanner();
+                teamArrayList = io.fileScanner();
+
+                System.out.println(teamArrayList.toString());
 
 
 
