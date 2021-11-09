@@ -13,14 +13,6 @@ public class Match {
     void getScore(){
     }
     void addPoints(){
-
     }
-    void readMatchFromFile(){
-
-    }
-
-
-
-
 
 }

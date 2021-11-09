@@ -39,7 +39,7 @@ public class KnockOut extends Tournament{
 
         int variabel = 0;
         for(int i = 0; i< teamsArrayList.size(); i++){
-            if(teamsArrayList.get(variabel).isInTournament == false){
+            if(teamsArrayList.get(variabel).isInTournament() == false){
                 teamsArrayList.remove(variabel);
             }
         }

@@ -13,7 +13,6 @@ public class IO {
 
         File file = new File("Data/Tournament.CSV");
         scanner = new Scanner(file);
-        Team teamCreater = new Team();
         scanner.useDelimiter(",|\\n");
 
 

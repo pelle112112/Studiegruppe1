@@ -10,7 +10,6 @@ public class Main {
 
         KnockOut knock = new KnockOut();
         League league = new League();
-        Team teamCreater = new Team();
         ArrayList<Team> teamArrayList= new ArrayList<Team>();
 
 
@@ -32,7 +31,7 @@ public class Main {
                 knock.createTournament();
 
 
-                System.out.println(teamArrayList.toString());
+                System.out.println(teamArrayList);
 
 
 
