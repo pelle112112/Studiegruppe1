@@ -25,7 +25,6 @@ public class Main {
 
                 io.fileWriter();
                 teamCounter++;
-                ui.interact();
                 break;
             case 2:
                 knock.createTournament();
