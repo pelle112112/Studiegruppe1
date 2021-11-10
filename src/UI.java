@@ -17,8 +17,12 @@ public class UI {
         System.out.println("Press 'q' to add a new team or press 'g' to generate a new tournament");
 
         String input = "";
+
         Scanner scan = new Scanner(System.in);
+        System.out.println("INPUT = " + input);
+
         input = scan.nextLine();
+
 
         if(input.contains("q")){
             UIInteraction = 1;

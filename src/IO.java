@@ -66,5 +66,7 @@ public class IO {
         out.write(stringToFile.toString());
         out.close();
 
+        ui.interact();
+
     }
 }

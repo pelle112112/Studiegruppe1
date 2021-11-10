@@ -12,6 +12,17 @@ public class Team {
     boolean isInTournament = true;
     KnockOut tourney1 = new KnockOut();
 
+<<<<<<< Updated upstream
+=======
+    public boolean isInTournament() {
+        return isInTournament;
+    }
+
+    public void setInTournament(boolean inTournament) {
+        isInTournament = inTournament;
+    }
+
+>>>>>>> Stashed changes
     public Team(){
     }
 
@@ -23,6 +34,7 @@ public class Team {
         this.teamID = teamID;
     }
 
+<<<<<<< Updated upstream
 
     void getPlayer(){
 
@@ -43,4 +55,13 @@ public class Team {
 
     }
 
+=======
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamName='" + teamName + '\'' +
+                ", teamID=" + teamID +
+                '}';
+    }
+>>>>>>> Stashed changes
 }

@@ -10,7 +10,7 @@ public abstract class Tournament {
 
     public abstract void getScoreBoard();
 
-    public abstract void updateTournament();
+    public abstract void updateTournament() throws FileNotFoundException;
 
     public abstract void addTeamtoArraylist(Team team);
 

@@ -20,7 +20,6 @@ public class Main {
         IO io = new IO();
         UI ui = new UI();
         ui.interact();
-
         switch (ui.UIInteraction){
             case 1:
                 //todo: create team
