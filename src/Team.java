@@ -15,6 +15,13 @@ public class Team {
     public Team(){
     }
 
+    public boolean isInTournament() {
+        return isInTournament;
+    }
+
+    public void setInTournament(boolean inTournament) {
+        isInTournament = inTournament;
+    }
 
     public Team(String teamName, String player1, String player2, int teamID) {
         this.teamName = teamName;
@@ -40,7 +47,13 @@ public class Team {
     ArrayList<Team> arrayParser (){
         System.out.println("ARRAY PARSER: " + tourney1);
         return tourney1.teamsArrayList;
-
+    }
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamName='" + teamName + '\'' +
+                ", teamID=" + teamID +
+                '}';
     }
 
 }
