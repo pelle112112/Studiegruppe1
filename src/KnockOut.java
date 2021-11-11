@@ -15,7 +15,6 @@ public class KnockOut extends Tournament{
         teamsArrayList = io.fileScanner();
         int v1 = 0, v2 = 1;
 
-
         //todo: The loop has to be changed so it works for more or less than 16 teams
         while(teamsArrayList.iterator().hasNext() && v1 != 16){
             matchesArrayList.add(new Match(teamsArrayList.get(v1), teamsArrayList.get(v2)));

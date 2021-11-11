@@ -9,6 +9,9 @@ public class Match {
 
     }
 
+    public Match(Team team, Team team1) {
+    }
+
 
     public void setTeam1(Team team1) {
         this.team1 = team1;
