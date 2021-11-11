@@ -3,10 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="0004fa6d-4a63-4383-b742-6693fb2dfae8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/KnockOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KnockOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Match.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tournament.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KnockOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KnockOut.java" afterDir="false" />
+>>>>>>> parent of fa5d263 (arraylist i main)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
