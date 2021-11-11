@@ -8,15 +8,11 @@ public class IO {
 
     ArrayList fileScanner() throws FileNotFoundException {
 
-
         ArrayList <Team> teamArrayList= new ArrayList<>();
 
         File file = new File("Data/Tournament.CSV");
         scanner = new Scanner(file);
-        Team teamCreater = new Team();
-        Match matchCreater = new Match();
         scanner.useDelimiter(",|\\n");
-
 
         String teamName = "", player1 = "", player2 = "";
         int ID = 0;
@@ -29,12 +25,7 @@ public class IO {
 
                 teamArrayList.add(new Team (teamName, player1, player2, ID));
 
-
-
-
-
             }
-            System.out.println("arraylist: " + teamArrayList);
         }
         catch (InputMismatchException e){
             System.out.println("Scanner has problems");
@@ -46,20 +37,25 @@ public class IO {
 
         UI ui = new UI();
         ui.teamUserInput();
+        int ID = 1;
+        String nextLine = "";
         File file = new File("Data/Tournament.CSV");
+
         scanner = new Scanner(file);
-        scanner.useDelimiter(",|\\n");
+        scanner.useDelimiter(",");
+        while (scanner.hasNextLine()) {
+            ID = scanner.nextInt() + 1;
+            //HVORFOR SKAL JEG BRUGE DEN HER STRING FOR AT LOOPET IKKE STOPPER?!
+            nextLine = scanner.nextLine();
+        }
+
         FileWriter filewriter = new FileWriter(file, true);
         BufferedWriter out = new BufferedWriter(filewriter);
-        int ID = 0;
-
-        //todo: Ordn ID, så det tæller op for hver person
 
         StringBuilder stringToFile = new StringBuilder();
 
-        out.append(ID+",");
 
-        System.out.println(ui.teamName);
+        out.append(ID+",");
         out.append(ui.teamName);
         out.append(',');
         out.append(ui.player1);

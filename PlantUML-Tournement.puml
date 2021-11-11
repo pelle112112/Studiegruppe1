@@ -1,0 +1,40 @@
+@startuml
+abstract class Tournament
+
+Tournament      <|--      League
+Tournament      <|--      KnockOut
+KnockOut "1"    *--   "15" Match    : has
+League         *--      Match
+Tournament -- Io
+Ui--Main
+Ui--Io
+Io--Team
+Match *-- "2" Team : has
+
+Ui : +void interact()
+Ui : +void teamUserInput()
+
+Io : +ArrayList fileScanner()
+Io : +void fileWriter()
+
+Team :  -String teamName;
+Team :  -String player1;
+Team :  -String player2;
+Team :  -int teamID;
+Team :  -int currentScore = 0;
+Team :  -boolean isInTournament = true;
+Team :  +boolean isInTournament()
+
+Match : Team team1
+Match : Team team2
+
+
+Tournament : ArrayList <Team> teamsArrayList
+Tournament : ArrayList <Match> matchesArrayList
+Tournament : + abstract void createTournament()
+Tournament : + abstract void getScoreBoard()
+Tournament : + abstract void updateTournament()
+Tournament : + abstract void addTeamtoArraylist(Team team)
+
+
+@enduml

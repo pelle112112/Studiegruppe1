@@ -8,10 +8,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Match matchCreator = new Match();
         KnockOut knock = new KnockOut();
         League league = new League();
-        Team teamCreater = new Team();
         ArrayList<Team> teamArrayList= new ArrayList<Team>();
 
 
@@ -27,13 +25,12 @@ public class Main {
 
                 io.fileWriter();
                 teamCounter++;
-                ui.interact();
                 break;
             case 2:
                 knock.createTournament();
-                teamArrayList = io.fileScanner();
 
-                System.out.println(teamArrayList.toString());
+
+                System.out.println(teamArrayList);
 
 
 
@@ -45,6 +42,8 @@ public class Main {
 
                 //todo: create League tournament
                 break;
+
+            //todo: Create a 4th option for the user to change the matchresult
         }
 
     }
