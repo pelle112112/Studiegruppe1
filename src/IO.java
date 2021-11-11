@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class IO {
     Scanner scanner;
 
-    void fileScanner() throws FileNotFoundException {
+    ArrayList fileScanner() throws FileNotFoundException {
 
 
         ArrayList <Team> teamArrayList= new ArrayList<>();
@@ -39,6 +39,7 @@ public class IO {
         catch (InputMismatchException e){
             System.out.println("Scanner has problems");
         }
+        return teamArrayList;
     }
 
     void fileWriter() throws IOException {
