@@ -19,32 +19,27 @@ public class Main {
         UI ui = new UI();
         ui.interact();
 
-        switch (ui.UIInteraction){
-            case 1:
-                //todo: create team
 
+        knock.createTournament();
+        System.out.println(knock.matchesArrayList);
+        System.out.println(teamArrayList);
+        league.createTournament();
+        while (ui.UIInteraction!=5) {
+
+
+            if(ui.UIInteraction == 1){
                 io.fileWriter();
                 teamCounter++;
-                break;
-            case 2:
-                knock.createTournament();
+            }
+            else if(ui.UIInteraction == 4){
+                ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
+            }
 
+            ui.interact();
 
-                System.out.println(teamArrayList);
-
-
-
-                //todo: create knockout tournament
-
-                break;
-            case 3:
-                league.createTournament();
-
-                //todo: create League tournament
-                break;
-
-            //todo: Create a 4th option for the user to change the matchresult
+        }
         }
 
+
+
     }
-}

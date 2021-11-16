@@ -1,15 +1,16 @@
 public class Match {
-    Team team1 = new Team();
-    Team team2 = new Team();
+    Team team1;
+    Team team2;
+    int matchID;
     int teamcounter = 0;
 
-    Team winner = new Team();
+    Team winner;
 
-    public Match(){
 
-    }
-
-    public Match(Team team, Team team1) {
+    public Match(Team tmpteam1, Team tmpteam2, int tmpID) {
+        this.team1 = tmpteam1;
+        this.team2 = tmpteam2;
+        this.matchID = tmpID;
     }
 
 
@@ -42,8 +43,18 @@ public class Match {
 
     }
 
+    public Team getTeam1() {
+        return team1;
+    }
 
+    public Team getTeam2() {
+        return team2;
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "Match: " + matchID +
+                " between: " + team1 +
+                " and " + team2 + " \n";
+    }
 }

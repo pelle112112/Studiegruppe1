@@ -31,9 +31,19 @@ public class Team {
     }
 
 
-    void getPlayer(){
 
+    public String getTeamName() {
+        return teamName;
     }
+
+    public String getPlayer1() {
+        return player1;
+    }
+
+    public String getPlayer2() {
+        return player2;
+    }
+
     void readTeamFromFile(){
 
     }
@@ -49,11 +59,8 @@ public class Team {
         return tourney1.teamsArrayList;
     }
     @Override
-    public String toString() {
-        return "Team{" +
-                "teamName='" + teamName + '\'' +
-                ", teamID=" + teamID +
-                '}';
-    }
 
+    public String toString() {
+        return teamName;
+    }
 }

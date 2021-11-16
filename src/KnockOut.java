@@ -11,20 +11,30 @@ public class KnockOut extends Tournament{
     @Override
     public void createTournament() throws FileNotFoundException {
 
-
         teamsArrayList = io.fileScanner();
-        int v1 = 0, v2 = 1;
+        int ID = 1;
 
         //todo: The loop has to be changed so it works for more or less than 16 teams
-        while(teamsArrayList.iterator().hasNext() && v1 != 16){
-            matchesArrayList.add(new Match(teamsArrayList.get(v1), teamsArrayList.get(v2)));
-            v1+= 2;
-            v2+=2;
+        for(int counter = 0; counter+2 <= teamsArrayList.size(); counter+=2){
+
+            this.matchesArrayList.add(new Match(teamsArrayList.get(counter), teamsArrayList.get(counter+1), ID));
+            ID++;
 
         }
-        System.out.println("Matches: " + matchesArrayList);
-        updateTournament();
+        //System.out.println("Matches: " + matchesArrayList);
 
+        //updateTournament();
+
+    }
+
+
+    public void setMatchesArrayList(ArrayList<Match> matchesArrayList) {
+        this.matchesArrayList = matchesArrayList;
+    }
+
+    public ArrayList<Match> getMatchesArrayList() {
+
+        return this.matchesArrayList;
     }
 
     @Override
@@ -48,4 +58,6 @@ public class KnockOut extends Tournament{
     public void addTeamtoArraylist(Team team) {
         teamsArrayList.add(team);
     }
+
+
 }
