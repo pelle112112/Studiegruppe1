@@ -46,5 +46,6 @@ public class Main {
             //todo: Create a 4th option for the user to change the matchresult
         }
 
+        // Todo vi skal lave en database
     }
 }
