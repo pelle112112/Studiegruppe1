@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 public class Main {
 
+    static KnockOut knock;
+    static League league;
+
+
     public static void main(String[] args) throws IOException {
 
-        KnockOut knock = new KnockOut();
-        League league = new League();
-        ArrayList<Team> teamArrayList= new ArrayList<Team>();
+        knock = new KnockOut();
+        league = new League();
 
-
-        int teamCounter = 0;
 
         IO io = new IO();
         UI ui = new UI();
@@ -23,24 +24,18 @@ public class Main {
         knock.createTournament();
 
         System.out.println(knock.matchesArrayList);
-        System.out.println(teamArrayList);
+        System.out.println(knock.teamsArrayList);
         league.createTournament();
         while (ui.UIInteraction!=5) {
             knock.bracketCreator(knock.matchesArrayList);
             knock.updateTournament(knock.matchesArrayList);
             if(ui.UIInteraction == 1){
                 io.fileWriter();
-                teamCounter++;
             }
             else if(ui.UIInteraction == 4){
                 ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
             }
-
             ui.interact();
-
         }
         }
-
-
-
     }

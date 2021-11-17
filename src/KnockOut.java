@@ -24,10 +24,6 @@ public class KnockOut extends Tournament{
 
 
         }
-        //System.out.println("Matches: " + matchesArrayList);
-
-        //updateTournament();
-
 
     }
 
@@ -35,16 +31,11 @@ public class KnockOut extends Tournament{
 
         int matchesLeft = 0, teamNameLength = 0;
         String team1 = "", team2 = "";
-        for(int i = 0; i<matches.size(); i++){
-            if(((Match)matches.get(i)).winner == null){
-                matchesLeft++;
-            }
-        }
-        System.out.println("matches left: " + matchesLeft);
+
 
 
         if(matchesLeft == 8){
-            System.out.println("Theres a perfect amount of teams for a bracket!");
+            System.out.println("Round 1 matches are being processed...");
         }
 
 
@@ -75,7 +66,7 @@ public class KnockOut extends Tournament{
         }
 
         if(matches.size() == 4){
-
+            System.out.println("OIOIOIOIOIOIOIOIOIOIOI");
         }
 
     }
@@ -100,7 +91,7 @@ public class KnockOut extends Tournament{
 
         //todo: Has to check all matches if theres a winner!
 
-        int matchesLeft = 0, ID = 1;
+        int matchesLeft = 15, ID = 9, tournamentRound = 1;
         ArrayList<Match> newMatchArray = new ArrayList();
 
         for(int i = 0; i<teamsArrayList.size(); i++){
@@ -110,25 +101,30 @@ public class KnockOut extends Tournament{
             }
         }
 
-        for(int i = 0; i<matches.size(); i++){
-            if(((Match)matches.get(i)).winner == null){
-                matchesLeft++;
+        for(int i = 0; i<matchesArrayList.size(); i++){
+            if(((Match)matchesArrayList.get(i)).winner != null){
+                matchesLeft--;
             }
 
         }
+        System.out.println("MATCHES LEFT: " + matchesLeft);
+        if(matchesLeft == 7 || matchesLeft == 3 || matchesLeft == 1){
 
-        if(true){
-            System.out.println("First round matches have been played. Next round matches are being processed...");
+            if(matchesLeft == 3){
+                ID = 13;
+            }
+            if (matchesLeft == 1){
+                ID = 15;
+            }
+            System.out.println("Round " + tournamentRound + " matches have been played. Next round and matches are being processed...");
 
             for(int counter = 0; counter+2 <= this.teamsArrayList.size(); counter+=2){
-                    newMatchArray.add(new Match(this.teamsArrayList.get(counter), this.teamsArrayList.get(counter+1), ID));
+                    matchesArrayList.add(new Match(this.teamsArrayList.get(counter), this.teamsArrayList.get(counter+1), ID));
                     ID++;
             }
+            System.out.println("New Matches: " + matchesArrayList.toString());
+            tournamentRound++;
         }
-
-        System.out.println("UPDATED MATCHES : " + newMatchArray.toString());
-        System.out.println("UPDATED TEAMS:  " + teamsArrayList.toString());
-
     }
 
     @Override

@@ -77,7 +77,7 @@ public class UI {
 
 
         String gameInput = "", teamInput = "";
-        int index1, index2;
+        int index1 = 0, index2 = 0;
         ArrayList MatchesArraylist = new ArrayList<>();
         ArrayList TeamsArraylist = new ArrayList();
 
@@ -85,37 +85,68 @@ public class UI {
         TeamsArraylist = teams;
 
 
+        System.out.println("_____________________________________________________________________");
+        System.out.println("Select one of the matches: \n ");
 
-        System.out.println("Select one of the matches: \n " + MatchesArraylist);
+
+        if(MatchesArraylist.size()==8){
+            System.out.println(MatchesArraylist);
+        }
+
+        else if (MatchesArraylist.size() == 12){
+            for(int i = 8; i<12; i++){
+                System.out.println(MatchesArraylist.get(i));
+            }
+        }
+
+        else if (MatchesArraylist.size() == 14){
+            for(int i = 12; i<14; i++){
+                System.out.println(MatchesArraylist.get(i));
+            }
+        }
+        else if(MatchesArraylist.size() == 15){
+            System.out.println(MatchesArraylist.get(14));
+        }
+
+
+
+
+
+
+
 
         Scanner scan = new Scanner(System.in);
         int gameInputInt = Integer.parseInt(gameInput = scan.nextLine());
+        int indexOfMatchArray = gameInputInt-1;
+
+
+
+        index1 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(indexOfMatchArray)).team1));
+        index2 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(indexOfMatchArray)).team2));
+
 
 
         System.out.println("You have selected match number " + gameInput + "\nWhich of the teams won? \n");
-        System.out.println(MatchesArraylist.get(gameInputInt - 1) + "\n");
+        System.out.println(MatchesArraylist.get(indexOfMatchArray) + "\n");
 
 
-        System.out.println("Press 1 for: " + ((Team)TeamsArraylist.get(2*gameInputInt-2)).getTeamName() + " and 2 for: " + ((Team)TeamsArraylist.get(2*gameInputInt-1)).getTeamName());
-        //System.out.println("MATCH TEAM: " + ((Match)MatchesArraylist.get(gameInputInt)).team1);
-        TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team1);
+        System.out.println("Press 1 for: " + ((Team)TeamsArraylist.get(index1)).getTeamName() + " and 2 for: " + ((Team)TeamsArraylist.get(index2)).getTeamName());
+        TeamsArraylist.indexOf(((Match) MatchesArraylist.get(indexOfMatchArray)).team1);
 
 
         teamInput = scan.nextLine();
 
         if(teamInput.contains("1")){
-            index1 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team1))-2;
-            System.out.println("INDEX UDREGNING: " + index1);
+
             System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!");
 
             ((Team)TeamsArraylist.get(index1+1)).setInTournament(false);
             ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
         }
         else if(teamInput.contains("2")){
-            index2 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team2))-2;
-            System.out.println("INDEX UDREGNING: " + index2);
+
             System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
-            
+
             ((Team)TeamsArraylist.get(index2-1)).setInTournament(false);
             ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
         }
