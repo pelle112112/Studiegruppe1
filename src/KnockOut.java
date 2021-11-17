@@ -32,11 +32,14 @@ public class KnockOut extends Tournament{
         int matchesLeft = 15, counter = 1, arrayCounter= 7, arrayCounter2 = 11;
         String team1 = "", team2 = "", winner = "", winner2 = "";
 
+        String[] vinderArray = new String[16];
 
 
-        String [] vinderArray = new String[16];
-        for(int i = 0; i<matchesArrayList.size()-2; i++){
-            vinderArray[i] = matchesArrayList.get(i).winner.teamName;
+        if (matchesArrayList.size() > 9) {
+
+            for (int i = 0; i < matchesArrayList.size() - 2; i++) {
+                vinderArray[i] = matchesArrayList.get(i).winner.teamName;
+            }
         }
 
         if(teamsArrayList.size() == 16){
