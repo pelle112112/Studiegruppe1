@@ -5,46 +5,58 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-
-    static KnockOut knock;
-    static League league;
-
-
+    static ArrayList<Team> teamArrayList;
     public static void main(String[] args) throws IOException {
 
-        knock = new KnockOut();
-        league = new League();
+        KnockOut knock = new KnockOut();
+        League league = new League();
+        DBconnector dbc = new DBconnector();
+        //kun i main
 
+
+
+        teamArrayList=dbc.readTeamData();
+
+
+
+
+        int teamCounter = 0;
 
 
         IO io = new IO();
         UI ui = new UI();
-
         ui.interact();
 
+        switch (ui.UIInteraction){
+            case 1:
+                //todo: create team
 
-        knock.createTournament();
-        league.createTournament();
-        knock.updateTournament(knock.matchesArrayList);
-        while (ui.UIInteraction!=5) {
+                //io.fileWriter();
+                dbc.writeTeamsToDataBase(knock.teamsArrayList);
+                teamCounter++;
+                break;
+            case 2:
+                knock.createTournament();
+                dbc.writeTeamsToDataBase(knock.teamsArrayList);
+
+
+                System.out.println(teamArrayList);
 
 
 
+                //todo: create knockout tournament
 
-            if(ui.UIInteraction == 1){
-                io.fileWriter();
-            }
-            else if(ui.UIInteraction == 2){
-                knock.bracketCreator(knock.matchesArrayList);
-            }
-            else if(ui.UIInteraction == 3){
-                System.out.println("You have created a League style tournament");
-            }
-            else if(ui.UIInteraction == 4){
-                ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
-                knock.updateTournament(knock.matchesArrayList);
-            }
-            ui.interact();
+                break;
+            case 3:
+                league.createTournament();
+
+                //todo: create League tournament
+                break;
+
+            //todo: Create a 4th option for the user to change the matchresult
         }
-        }
+
+        // Todo vi skal lave en database
     }
+
+}
