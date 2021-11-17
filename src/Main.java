@@ -12,7 +12,11 @@ public class Main {
         League league = new League();
         DBconnector dbc = new DBconnector();
         //kun i main
+
+
+
         teamArrayList=dbc.readTeamData();
+
 
 
 
@@ -27,11 +31,13 @@ public class Main {
             case 1:
                 //todo: create team
 
-                io.fileWriter();
+                //io.fileWriter();
+                dbc.writeTeamsToDataBase(knock.teamsArrayList);
                 teamCounter++;
                 break;
             case 2:
                 knock.createTournament();
+                dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
 
                 System.out.println(teamArrayList);
@@ -52,4 +58,5 @@ public class Main {
 
         // Todo vi skal lave en database
     }
+
 }
