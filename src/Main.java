@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-
+    static ArrayList<Team> teamArrayList;
     public static void main(String[] args) throws IOException {
 
         KnockOut knock = new KnockOut();
         League league = new League();
-        ArrayList<Team> teamArrayList= new ArrayList<Team>();
+        DBconnector dbc = new DBconnector();
+        //kun i main
+        teamArrayList=dbc.readTeamData();
+
 
 
         int teamCounter = 0;
+
 
         IO io = new IO();
         UI ui = new UI();

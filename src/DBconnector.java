@@ -10,6 +10,7 @@ import java.util.ArrayList;
         /*
         1: sikre at vi får forbindelse til en database, korrekt.
         2. Sikre at vi kan læse noget fra databasen
+
         3. Sikre at vi har en metode til at skrive fra den.
 
          */
@@ -18,37 +19,26 @@ import java.util.ArrayList;
         //Hvad hedder Schema, som den forsøger at connecte til? Tournament
         //  Database credentials
         private static final String USER = "root";
-        private  static final String PASS = "snr94sps";
+        private static final String PASS = "snr94sps";
 
 
-       private  Connection conn = null;
+        private Connection conn = null;
         //connection = https://www.javatpoint.com/Connection-interface
         //https://www.javatpoint.com/steps-to-connect-to-the-database-in-java
 
         private Statement stmt = null;
 //fra Geis
 
-        public static void main(String[] args) {
-            //til at teste database objektet
-            DBconnector dbc = new DBconnector();
-
-            ArrayList<Team> placeholder = new ArrayList<>();
-            Team tenThumbs = new Team("Ten Thumbs","Kaj","MANDrea",69);
-            placeholder.add(tenThumbs);
-
-            dbc.writeTeamsToDataBase(placeholder);
-
-        } 
 
 
-        public DBconnector(){//constructor, class og filename skal matche - ellers vil JDK ikke oversætte. :(((((( sad emoji
+        public DBconnector() {//constructor, class og filename skal matche - ellers vil JDK ikke oversætte. :(((((( sad emoji
 
             //STEP 2: Register JDBC driver
             // Class.forName("com.mysql.jdbc.Driver"); //kan være nødvendig.
             System.out.println("Connecting to database...");
             try {
-                conn = DriverManager.getConnection(DB_URL,USER,PASS);
-                if(conn!=null){
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                if (conn != null) {
                     System.out.println("Connection made");
                 }
             } catch (SQLException e) {
@@ -59,27 +49,30 @@ import java.util.ArrayList;
         }
 
 
-        public  void writeTeamsToDataBase(ArrayList<Team> arrayListOfTeams){
+        public void writeTeamsToDataBase(ArrayList<Team> arrayListOfTeams) {
 
             //https://www.javatpoint.com/PreparedStatement-interface
-            try{
-                String sqlStringDerSkalUdføres = "insert into ";
+            try {
+                String sqlStringDerSkalUdføres = "INSERT INTO Team VALUES(?,?,?)";
                 //lav en SQL String først i MySQL Workbench - og indsæt den her. Brug (?,?,?)
                 //https://www.javatpoint.com/PreparedStatement-interface
                 //https://www.geeksforgeeks.org/how-to-use-preparedstatement-in-java/
-                //http://tutorials.jenkov.com/jdbc/preparedstatement.html 
-                
-                
+                //http://tutorials.jenkov.com/jdbc/preparedstatement.html
+
+
                 PreparedStatement prep = conn.prepareStatement(sqlStringDerSkalUdføres);
                 //den skal have en SQL Query - kan vi få en fra Workbench? :thinking:
+                prep.setString(0, "");
+                prep.setString(0, "");
+                prep.setString(0, "");
                 prep.execute();
-            }catch (SQLException ex){
+                System.out.println("has been inserted");
+            } catch (SQLException ex) {
 
             }
             //hvad ved I om PreparedStatements?
 
             //
-
 
 
         }
@@ -89,10 +82,9 @@ import java.util.ArrayList;
         //spilleres navne for et hold
         //hvad med matches?
 
-        public ArrayList<Team> getTeams(){
+        public ArrayList<Team> getTeams() {
             //declare a placeholder to store shit in
-            ArrayList<Team> output=null;
-
+            ArrayList<Team> output = null;
 
 
             return output;
@@ -101,10 +93,10 @@ import java.util.ArrayList;
 
 
         //@Override
-        public String[] readTeamData() {
-            String[] team_data = new String[40];
+        public ArrayList<Team> readTeamData() {
+            ArrayList<Team> dbTeamArray = new ArrayList<>();
 
-            try{
+            try {
 
 
                 //STEP 3: Open a connection
@@ -118,40 +110,68 @@ import java.util.ArrayList;
                 String sql = "SELECT * FROM Team";
                 ResultSet rs = stmt.executeQuery(sql);
 
+
+                int i=0;
                 //STEP 5: Extract data from result set
-                while(rs.next()){
+                while (rs.next()) {
                     //Retrieve by column name
-                    int id  = rs.getInt("id");
+                    String teamName = rs.getString("teamName");
+                    String Player1 = rs.getString("Player1");
+                    String Player2 = rs.getString("Player2");
 
-                   // team_data[id-1]=id+","+teamName+","+Player1+","+Player2;
 
+                    dbTeamArray.add(new Team (teamName, Player1, Player2,i+1));
+                    i++;
+                    System.out.println(teamName);
                 }
                 //STEP 6: Clean-up environment
                 rs.close();
                 stmt.close();
                 conn.close();
-            }catch(SQLException se){
+            } catch (SQLException se) {
                 //Handle errors for JDBC
                 se.printStackTrace();
-            }catch(Exception e){
+            } catch (Exception e) {
                 //Handle errors for Class.forName
                 e.printStackTrace();
-            }finally{
+            } finally {
                 //finally block used to close resources
-                try{
-                    if(stmt!=null)
+                try {
+                    if (stmt != null)
                         stmt.close();
-                }catch(SQLException se2){
+                } catch (SQLException se2) {
                 }// nothing we can do
-                try{
-                    if(conn!=null)
+                try {
+                    if (conn != null)
                         conn.close();
-                }catch(SQLException se){
+                } catch (SQLException se) {
                     se.printStackTrace();
                 }//end finally try
             }//end try
 
 
-            return team_data;
+            return dbTeamArray;
         }
-    }
+/*
+        public void printDB() throws SQLException {
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/dictionary_db?user=root&password=snr94sps");
+                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM Team");
+                 ResultSet results = statement.executeQuery();) {
+
+                while (results.next()) {
+                    int id = results.getInt(1);
+                    String teamName = results.getString("teamName");
+                    String player1 = results.getString("Player1");
+                    String player2 = results.getString("Player2");
+                    System.out.println("Id: " + id + ", teamName: " + teamName + ", Player1: " + player1 +",Player2: " + player2);
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Error while communicating with the database");
+
+            }*/
+        }
+    //}
+
+
+
