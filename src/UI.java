@@ -17,8 +17,10 @@ public class UI {
 
     void interact() throws IOException {
 
-        System.out.println("Press 'q' to add a new team, press 'w' to enter the result of a game or press 'E' to exit!");
 
+
+
+        System.out.println("Press 'g' to create a tournament, 'q' to add a new team, 'w' to enter the result of a game or 'e' to exit.");
         String input = "";
         Scanner scan = new Scanner(System.in);
         input = scan.nextLine();
@@ -27,7 +29,7 @@ public class UI {
             UIInteraction = 1;
 
         }
-        /*else if(input.contains("g")){
+        else if(input.contains("g")){
 
             //todo: Create tournament and dates for each match
 
@@ -42,7 +44,7 @@ public class UI {
                 UIInteraction = 3;
             }
         }
-        */
+
 
         else if(input.contains("w")){
             UIInteraction = 4;
@@ -56,8 +58,6 @@ public class UI {
 
     void teamUserInput(){
 
-
-        int teamID = 0;
         Scanner scan = new Scanner(System.in);
 
 
@@ -78,14 +78,14 @@ public class UI {
 
         String gameInput = "", teamInput = "";
         int index1 = 0, index2 = 0;
-        ArrayList MatchesArraylist = new ArrayList<>();
-        ArrayList TeamsArraylist = new ArrayList();
+        ArrayList MatchesArraylist;
+        ArrayList TeamsArraylist;
 
         MatchesArraylist = matches;
         TeamsArraylist = teams;
 
 
-        System.out.println("_____________________________________________________________________");
+        System.out.println("___________________________________________________________________________________________________________________________");
         System.out.println("Select one of the matches: \n ");
 
 
@@ -107,11 +107,7 @@ public class UI {
         else if(MatchesArraylist.size() == 15){
             System.out.println(MatchesArraylist.get(14));
         }
-
-
-
-
-
+        System.out.println("___________________________________________________________________________________________________________________________");
 
 
 
@@ -127,8 +123,8 @@ public class UI {
 
 
         System.out.println("You have selected match number " + gameInput + "\nWhich of the teams won? \n");
-        System.out.println(MatchesArraylist.get(indexOfMatchArray) + "\n");
-
+        System.out.println("\n \n" + MatchesArraylist.get(indexOfMatchArray) + "\n");
+        System.out.println("___________________________________________________________________________________________________________________________");
 
         System.out.println("Press 1 for: " + ((Team)TeamsArraylist.get(index1)).getTeamName() + " and 2 for: " + ((Team)TeamsArraylist.get(index2)).getTeamName());
         TeamsArraylist.indexOf(((Match) MatchesArraylist.get(indexOfMatchArray)).team1);
@@ -138,7 +134,8 @@ public class UI {
 
         if(teamInput.contains("1")){
 
-            System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!");
+            System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!\n");
+            System.out.println("___________________________________________________________________________________________________________________________");
 
             ((Team)TeamsArraylist.get(index1+1)).setInTournament(false);
             ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
@@ -146,12 +143,11 @@ public class UI {
         else if(teamInput.contains("2")){
 
             System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
+            System.out.println("___________________________________________________________________________________________________________________________");
 
             ((Team)TeamsArraylist.get(index2-1)).setInTournament(false);
             ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
         }
-
-
-
     }
+
 }

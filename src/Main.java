@@ -16,24 +16,33 @@ public class Main {
         league = new League();
 
 
+
         IO io = new IO();
         UI ui = new UI();
+
         ui.interact();
 
 
         knock.createTournament();
-
-        System.out.println(knock.matchesArrayList);
-        System.out.println(knock.teamsArrayList);
         league.createTournament();
+        knock.updateTournament(knock.matchesArrayList);
         while (ui.UIInteraction!=5) {
-            knock.bracketCreator(knock.matchesArrayList);
-            knock.updateTournament(knock.matchesArrayList);
+
+
+
+
             if(ui.UIInteraction == 1){
                 io.fileWriter();
             }
+            else if(ui.UIInteraction == 2){
+                knock.bracketCreator(knock.matchesArrayList);
+            }
+            else if(ui.UIInteraction == 3){
+                System.out.println("You have created a League style tournament");
+            }
             else if(ui.UIInteraction == 4){
                 ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
+                knock.updateTournament(knock.matchesArrayList);
             }
             ui.interact();
         }

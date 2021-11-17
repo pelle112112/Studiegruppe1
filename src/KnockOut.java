@@ -13,7 +13,7 @@ public class KnockOut extends Tournament{
     public void createTournament() throws FileNotFoundException {
 
         teamsArrayList = io.fileScanner();
-        int ID = 1, counter2 = 1;
+        int ID = 1;
 
         //todo: The loop has to be changed so it works for more or less than 16 teams
         for(int counter = 0; counter+2 <= teamsArrayList.size(); counter+=2){
@@ -29,45 +29,125 @@ public class KnockOut extends Tournament{
 
     public void bracketCreator(ArrayList matches){
 
-        int matchesLeft = 0, teamNameLength = 0;
-        String team1 = "", team2 = "";
+        int matchesLeft = 15, counter = 1;
+        String team1 = "", team2 = "", winner = "", winner2 = "";
 
 
 
-        if(matchesLeft == 8){
+
+        if(teamsArrayList.size() == 16){
             System.out.println("Round 1 matches are being processed...");
+
+            for(int i = 0; i<matches.size(); i++) {
+
+
+                team1 = ((Match)matches.get(i)).team1.teamName;
+                team2 = ((Match)matches.get(i)).team2.teamName;
+                for(int y = 0; y < 16; y++){
+                    if(team1.length() < 13){
+                        team1+= " ";
+                    }
+                }
+                for(int y = 0; y < 16; y++){
+                    if(team2.length() < 13){
+                        team2+= " ";
+                    }
+                }
+                System.out.println(team1 + " --------------");
+
+
+                System.out.println("                           |");
+                System.out.println(team2 + " --------------");
+
+                System.out.println("");
+                System.out.println("\n");
+
+            }
         }
+        else if(teamsArrayList.size() == 8){
+            for(int i = 0; i<8; i++) {
+                counter++;
 
 
-        for(int i = 0; i<matches.size(); i++) {
+                team1 = ((Match)matches.get(i)).team1.teamName;
+                team2 = ((Match)matches.get(i)).team2.teamName;
+                winner = matchesArrayList.get(i).winner.teamName;
 
+                for(int y = 0; y < 16; y++){
+                    if(team1.length() < 13){
+                        team1+= " ";
+                    }
+                }
+                for(int y = 0; y < 16; y++){
+                    if(team2.length() < 13){
+                        team2+= " ";
+                    }
+                    if(winner.length() < 14){
+                        winner+= " ";
+                    }
+                }
+                System.out.println(team1 + " --------------");
+                System.out.println("                           |  " + winner +  "--------------");
+                System.out.println(team2 + " --------------");
 
-            team1 = ((Match)matches.get(i)).team1.teamName;
-            team2 = ((Match)matches.get(i)).team2.teamName;
-            for(int y = 0; y < 16; y++){
-                if(team1.length() < 13){
-                    team1+= " ";
+                if(i != 7 && counter % 2 == 0) {
+                    System.out.println("                                                         |");
+                    System.out.println("                                                         |");
+                    System.out.println("                                                         |");
+                }
+                if(counter % 2 != 0){
+                    System.out.println("\n \n \n");
                 }
             }
-            for(int y = 0; y < 16; y++){
-                if(team2.length() < 13){
-                    team2+= " ";
+        }
+
+        else if(teamsArrayList.size() == 4){
+            counter = 1;
+            for(int i = 0; i<8; i++) {
+
+
+                team1 = ((Match)matches.get(i)).team1.teamName;
+                team2 = ((Match)matches.get(i)).team2.teamName;
+                winner = matchesArrayList.get(i).winner.teamName;
+                if (i < 4) {
+                    winner2 = matchesArrayList.get(i+7).winner.teamName;
+                }
+
+                for(int y = 0; y < 16; y++){
+                    if(team1.length() < 13){
+                        team1+= " ";
+                    }
+                }
+                for(int y = 0; y < 16; y++){
+                    if(team2.length() < 13){
+                        team2+= " ";
+                    }
+                    if(winner.length() < 14){
+                        winner+= " ";
+                    }
+                }
+                if(i < 8) {
+                    System.out.println(team1 + " --------------");
+                    System.out.println("                           |  " + winner + "--------------");
+                    System.out.println(team2 + " --------------");
+                }
+                if(i != 7 && counter % 2 == 0) {
+                    System.out.println("                                                         |");
+                    System.out.println("                                                         |" + winner2);
+                    System.out.println("                                                         |");
+                }
+                if(counter % 2 != 0 && i<8){
+                    System.out.println("\n \n \n");
                 }
             }
-            System.out.println(team1 + " --------------");
-
-
-            System.out.println("                           |");
-            System.out.println(team2 + " --------------");
-
-            System.out.println("");
-            System.out.println("\n");
-
+        }
+        else if(teamsArrayList.size() == 2){
+            System.out.println("FINALE ROUND TESTTESTTTETS");
         }
 
-        if(matches.size() == 4){
-            System.out.println("OIOIOIOIOIOIOIOIOIOIOI");
-        }
+
+
+
 
     }
 
@@ -92,11 +172,10 @@ public class KnockOut extends Tournament{
         //todo: Has to check all matches if theres a winner!
 
         int matchesLeft = 15, ID = 9, tournamentRound = 1;
-        ArrayList<Match> newMatchArray = new ArrayList();
 
         for(int i = 0; i<teamsArrayList.size(); i++){
             if(((Team)teamsArrayList.get(i)).isInTournament == false){
-                System.out.println("YOU WANT TO REMOVE: " + teamsArrayList.get(i));
+
                 this.teamsArrayList.remove(i);
             }
         }
@@ -107,23 +186,42 @@ public class KnockOut extends Tournament{
             }
 
         }
-        System.out.println("MATCHES LEFT: " + matchesLeft);
+
         if(matchesLeft == 7 || matchesLeft == 3 || matchesLeft == 1){
 
             if(matchesLeft == 3){
                 ID = 13;
+                tournamentRound = 2;
             }
             if (matchesLeft == 1){
                 ID = 15;
+                tournamentRound = 3;
             }
-            System.out.println("Round " + tournamentRound + " matches have been played. Next round and matches are being processed...");
+
+            System.out.println("Round " + tournamentRound + " matches have been played. Next round and matches are being processed...\n \n");
+
 
             for(int counter = 0; counter+2 <= this.teamsArrayList.size(); counter+=2){
                     matchesArrayList.add(new Match(this.teamsArrayList.get(counter), this.teamsArrayList.get(counter+1), ID));
                     ID++;
             }
-            System.out.println("New Matches: " + matchesArrayList.toString());
-            tournamentRound++;
+
+            if (matchesLeft == 7){
+                for(int i = 8; i<12; i++){
+                    System.out.println("Quarter finals: " + matchesArrayList.get(i));
+                }
+            }
+
+            else if (matchesLeft == 3){
+                for(int i = 12; i<14; i++){
+                    System.out.println("Semi Finals: " + matchesArrayList.get(i));
+                }
+            }
+            else if(matchesLeft == 1){
+                System.out.println("Finale: " + matchesArrayList.get(14));
+            }
+
+
         }
     }
 

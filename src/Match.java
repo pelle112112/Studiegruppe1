@@ -2,7 +2,6 @@ public class Match {
     Team team1;
     Team team2;
     int matchID;
-    int teamcounter = 0;
 
     Team winner;
 
