@@ -25,7 +25,9 @@ public class IO {
 
                 teamArrayList.add(new Team (teamName, player1, player2, ID));
 
+
             }
+
         }
         catch (InputMismatchException e){
             System.out.println("Scanner has problems");
