@@ -29,11 +29,15 @@ public class KnockOut extends Tournament{
 
     public void bracketCreator(ArrayList matches){
 
-        int matchesLeft = 15, counter = 1;
+        int matchesLeft = 15, counter = 1, arrayCounter= 7, arrayCounter2 = 11;
         String team1 = "", team2 = "", winner = "", winner2 = "";
 
 
 
+        String [] vinderArray = new String[16];
+        for(int i = 0; i<matchesArrayList.size()-2; i++){
+            vinderArray[i] = matchesArrayList.get(i).winner.teamName;
+        }
 
         if(teamsArrayList.size() == 16){
             System.out.println("Round 1 matches are being processed...");
@@ -41,8 +45,8 @@ public class KnockOut extends Tournament{
             for(int i = 0; i<matches.size(); i++) {
 
 
-                team1 = ((Match)matches.get(i)).team1.teamName;
-                team2 = ((Match)matches.get(i)).team2.teamName;
+                team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
+                team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
                 for(int y = 0; y < 16; y++){
                     if(team1.length() < 13){
                         team1+= " ";
@@ -69,8 +73,8 @@ public class KnockOut extends Tournament{
                 counter++;
 
 
-                team1 = ((Match)matches.get(i)).team1.teamName;
-                team2 = ((Match)matches.get(i)).team2.teamName;
+                team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
+                team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
                 winner = matchesArrayList.get(i).winner.teamName;
 
                 for(int y = 0; y < 16; y++){
@@ -101,16 +105,19 @@ public class KnockOut extends Tournament{
             }
         }
 
+
         else if(teamsArrayList.size() == 4){
             counter = 1;
             for(int i = 0; i<8; i++) {
+                counter++;
 
 
-                team1 = ((Match)matches.get(i)).team1.teamName;
-                team2 = ((Match)matches.get(i)).team2.teamName;
+
+                team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
+                team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
                 winner = matchesArrayList.get(i).winner.teamName;
                 if (i < 4) {
-                    winner2 = matchesArrayList.get(i+7).winner.teamName;
+                    winner2 = matchesArrayList.get(i+8).winner.teamName;
                 }
 
                 for(int y = 0; y < 16; y++){
@@ -132,8 +139,9 @@ public class KnockOut extends Tournament{
                     System.out.println(team2 + " --------------");
                 }
                 if(i != 7 && counter % 2 == 0) {
+                    arrayCounter++;
                     System.out.println("                                                         |");
-                    System.out.println("                                                         |" + winner2);
+                    System.out.println("                                                         |" + vinderArray[arrayCounter]);
                     System.out.println("                                                         |");
                 }
                 if(counter % 2 != 0 && i<8){
@@ -142,7 +150,47 @@ public class KnockOut extends Tournament{
             }
         }
         else if(teamsArrayList.size() == 2){
-            System.out.println("FINALE ROUND TESTTESTTTETS");
+            for(int i = 0; i<8; i++) {
+                counter++;
+
+
+
+                team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
+                team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
+                winner = matchesArrayList.get(i).winner.teamName;
+                if (i < 4) {
+                    winner2 = matchesArrayList.get(i+8).winner.teamName;
+                }
+
+                for(int y = 0; y < 16; y++){
+                    if(team1.length() < 13){
+                        team1+= " ";
+                    }
+                }
+                for(int y = 0; y < 16; y++){
+                    if(team2.length() < 13){
+                        team2+= " ";
+                    }
+                    if(winner.length() < 14){
+                        winner+= " ";
+                    }
+                }
+                if(i < 8) {
+                    System.out.println(team1 + " --------------");
+                    System.out.println("                           |  " + winner + "--------------");
+                    System.out.println(team2 + " --------------");
+                }
+                if(i != 7 && counter % 2 == 0) {
+                    arrayCounter++;
+                    System.out.println("                                                         |");
+                    System.out.println("                                                         |" + vinderArray[arrayCounter]);
+                    System.out.println("                                                         |");
+                }
+                if(counter % 2 != 0 && i<8){
+                    System.out.println("\n \n \n");
+                }
+
+            }
         }
 
 
