@@ -5,58 +5,61 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    static KnockOut knock;
+    static League league;
+    static DBconnector dbc;
+
+
     static ArrayList<Team> teamArrayList;
     public static void main(String[] args) throws IOException {
 
-        KnockOut knock = new KnockOut();
-        League league = new League();
-        DBconnector dbc = new DBconnector();
+        knock = new KnockOut();
+        league = new League();
+        dbc = new DBconnector();
         //kun i main
 
 
 
         teamArrayList=dbc.readTeamData();
 
-
-
-
-        int teamCounter = 0;
-
-
         IO io = new IO();
         UI ui = new UI();
         ui.interact();
 
-        switch (ui.UIInteraction){
-            case 1:
-                //todo: create team
-
-                //io.fileWriter();
-                dbc.writeTeamsToDataBase(knock.teamsArrayList);
-                teamCounter++;
-                break;
-            case 2:
-                knock.createTournament();
-                dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
 
-                System.out.println(teamArrayList);
+        dbc.writeTeamsToDataBase(knock.teamsArrayList);
+        knock.createTournament();
+        league.createTournament();
+        knock.updateTournament(knock.matchesArrayList);
 
+        while (ui.UIInteraction!=5) {
 
+                if(ui.UIInteraction == 1) {
 
-                //todo: create knockout tournament
+                    //io.fileWriter();
+                    dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
-                break;
-            case 3:
-                league.createTournament();
+                }
+                else if(ui.UIInteraction == 2) {
 
-                //todo: create League tournament
-                break;
+                    knock.bracketCreator(knock.matchesArrayList);
+                }
+                else if(ui.UIInteraction == 3) {
 
-            //todo: Create a 4th option for the user to change the matchresult
+                    league.createTournament();
+
+                }
+
+                else if(ui.UIInteraction == 4){
+                    ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
+                    knock.updateTournament(knock.matchesArrayList);
+                }
+                ui.interact();
+                //todo: Create a 4th option for the user to change the matchresult
+
         }
-
-        // Todo vi skal lave en database
     }
 
 }
