@@ -19,7 +19,7 @@ public class League extends Tournament{
     }
 
     @Override
-    public void updateTournament() {
+    public void updateTournament(ArrayList matches) {
 
     }
 

@@ -21,12 +21,13 @@ public class Main {
 
 
         knock.createTournament();
+
         System.out.println(knock.matchesArrayList);
         System.out.println(teamArrayList);
         league.createTournament();
         while (ui.UIInteraction!=5) {
-
-
+            knock.bracketCreator(knock.matchesArrayList);
+            knock.updateTournament(knock.matchesArrayList);
             if(ui.UIInteraction == 1){
                 io.fileWriter();
                 teamCounter++;

@@ -77,6 +77,7 @@ public class UI {
 
 
         String gameInput = "", teamInput = "";
+        int index1, index2;
         ArrayList MatchesArraylist = new ArrayList<>();
         ArrayList TeamsArraylist = new ArrayList();
 
@@ -96,27 +97,28 @@ public class UI {
 
 
         System.out.println("Press 1 for: " + ((Team)TeamsArraylist.get(2*gameInputInt-2)).getTeamName() + " and 2 for: " + ((Team)TeamsArraylist.get(2*gameInputInt-1)).getTeamName());
+        //System.out.println("MATCH TEAM: " + ((Match)MatchesArraylist.get(gameInputInt)).team1);
+        TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team1);
 
 
         teamInput = scan.nextLine();
 
         if(teamInput.contains("1")){
-            System.out.println("Team " + ((Team)TeamsArraylist.get(2*gameInputInt-2)).getTeamName() +" is the winner!");
-            ((Team)TeamsArraylist.get(2*gameInputInt-1)).setInTournament(false);
-            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(2*gameInputInt-2));
+            index1 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team1))-2;
+            System.out.println("INDEX UDREGNING: " + index1);
+            System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!");
+
+            ((Team)TeamsArraylist.get(index1+1)).setInTournament(false);
+            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
         }
         else if(teamInput.contains("2")){
-            System.out.println("Team " + ((Team)TeamsArraylist.get(2*gameInputInt-1)).getTeamName() +" is the winner!");
-            ((Team)TeamsArraylist.get(2*gameInputInt-2)).setInTournament(false);
-            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(2*gameInputInt-1));
+            index2 = (TeamsArraylist.indexOf(((Match) MatchesArraylist.get(gameInputInt)).team2))-2;
+            System.out.println("INDEX UDREGNING: " + index2);
+            System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
+            
+            ((Team)TeamsArraylist.get(index2-1)).setInTournament(false);
+            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
         }
-
-
-
-
-
-
-
 
 
 
