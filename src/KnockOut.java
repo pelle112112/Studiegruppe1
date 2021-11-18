@@ -21,9 +21,8 @@ public class KnockOut extends Tournament{
                 this.matchesArrayList.add(new Match(teamsArrayList.get(counter), teamsArrayList.get(counter+1), ID));
                 ID++;
             }
-
-
         }
+        System.out.println("Knockout Matches: " + matchesArrayList.toString());
 
     }
 
@@ -32,13 +31,17 @@ public class KnockOut extends Tournament{
         int matchesLeft = 15, counter = 1, arrayCounter= 7, arrayCounter2 = 11;
         String team1 = "", team2 = "", winner = "", winner2 = "";
 
-        String[] vinderArray = new String[16];
+        ArrayList<String> vinderArray = new ArrayList();
 
 
-        if (matchesArrayList.size() > 9) {
+        if (matchesArrayList.size() >= 8) {
 
             for (int i = 0; i < matchesArrayList.size() - 2; i++) {
-                vinderArray[i] = matchesArrayList.get(i).winner.teamName;
+
+                if(matchesArrayList.get(i).winner.teamName == null){
+                    vinderArray.set(i, "ingenVinder");
+                }
+                vinderArray.set(i, matchesArrayList.get(i).winner.teamName);
             }
         }
 
@@ -144,7 +147,7 @@ public class KnockOut extends Tournament{
                 if(i != 7 && counter % 2 == 0) {
                     arrayCounter++;
                     System.out.println("                                                         |");
-                    System.out.println("                                                         |" + vinderArray[arrayCounter]);
+                    System.out.println("                                                         |" + vinderArray.get(arrayCounter));
                     System.out.println("                                                         |");
                 }
                 if(counter % 2 != 0 && i<8){
@@ -186,7 +189,7 @@ public class KnockOut extends Tournament{
                 if(i != 7 && counter % 2 == 0) {
                     arrayCounter++;
                     System.out.println("                                                         |");
-                    System.out.println("                                                         |" + vinderArray[arrayCounter]);
+                    System.out.println("                                                         |" + vinderArray.get(arrayCounter));
                     System.out.println("                                                         |");
                 }
                 if(counter % 2 != 0 && i<8){
