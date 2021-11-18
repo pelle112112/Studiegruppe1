@@ -38,10 +38,11 @@ public class KnockOut extends Tournament{
 
             for (int i = 0; i < matchesArrayList.size() - 2; i++) {
 
-                if(matchesArrayList.get(i).winner.teamName == null){
-                    vinderArray.set(i, "ingenVinder");
+
+                if(matchesArrayList.get(i).winner != null){
+                    vinderArray.set(i, matchesArrayList.get(i).winner.teamName);
                 }
-                vinderArray.set(i, matchesArrayList.get(i).winner.teamName);
+
             }
         }
 
