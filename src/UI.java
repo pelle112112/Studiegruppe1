@@ -20,7 +20,7 @@ public class UI {
 
 
 
-        System.out.println("Press 'g' to create a tournament, 'q' to add a new team, 'w' to enter the result of a game or 'e' to exit.");
+        System.out.println("Press 'g' to create a tournament, 's' to see the Scoreboard (League), 'q' to add a new team, 'w' to enter the result of a game or 'e' to exit.");
         String input = "";
         Scanner scan = new Scanner(System.in);
         input = scan.nextLine();
@@ -34,6 +34,7 @@ public class UI {
             //todo: Create tournament and dates for each match
 
             System.out.println("Enter '1' for a knockout-style tournament or '2' for a league-style tournament");
+            System.out.println("***You need 16 teams to create a knockout style tournament!");
             input = scan.nextLine();
             if(input.contains("1")){
                 System.out.println("You have created a knockout-style tournament");
@@ -51,6 +52,9 @@ public class UI {
         }
         else if(input.contains("e")){
             UIInteraction = 5;
+        }
+        else if(input.contains("s")){
+            UIInteraction = 6;
         }
 
 
@@ -107,6 +111,9 @@ public class UI {
         else if(MatchesArraylist.size() == 15){
             System.out.println(MatchesArraylist.get(14));
         }
+        else {
+            System.out.println(MatchesArraylist);
+        }
         System.out.println("___________________________________________________________________________________________________________________________");
 
 
@@ -132,22 +139,41 @@ public class UI {
 
         teamInput = scan.nextLine();
 
-        if(teamInput.contains("1")){
+        if(TeamsArraylist.size() == 16){
+            if(teamInput.contains("1")){
 
-            System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!\n");
-            System.out.println("___________________________________________________________________________________________________________________________");
+                System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!\n");
+                System.out.println("___________________________________________________________________________________________________________________________");
 
-            ((Team)TeamsArraylist.get(index1+1)).setInTournament(false);
-            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
+                ((Team)TeamsArraylist.get(index1+1)).setInTournament(false);
+                ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
+            }
+            else if(teamInput.contains("2")){
+
+                System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
+                System.out.println("___________________________________________________________________________________________________________________________");
+
+                ((Team)TeamsArraylist.get(index2-1)).setInTournament(false);
+                ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
+            }
         }
-        else if(teamInput.contains("2")){
+        else {
+            if(teamInput.contains("1")){
 
-            System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
-            System.out.println("___________________________________________________________________________________________________________________________");
+                System.out.println("Team " + ((Team)TeamsArraylist.get(index1)).getTeamName() +" is the winner!\n");
+                System.out.println("___________________________________________________________________________________________________________________________");
 
-            ((Team)TeamsArraylist.get(index2-1)).setInTournament(false);
-            ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
+                ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index1));
+            }
+            else if(teamInput.contains("2")){
+
+                System.out.println("Team " + ((Team)TeamsArraylist.get(index2)).getTeamName() +" is the winner!");
+                System.out.println("___________________________________________________________________________________________________________________________");
+
+                ((Match)MatchesArraylist.get(gameInputInt-1)).winner = ((Team)TeamsArraylist.get(index2));
+            }
         }
+
     }
 
 }

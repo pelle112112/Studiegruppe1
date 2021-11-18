@@ -14,14 +14,17 @@ public class Main {
     static ArrayList<Team> teamArrayList;
     public static void main(String[] args) throws IOException {
 
+
+        boolean tourneyStyle = false;
+        int tourneyCounter = 0;
         knock = new KnockOut();
         league = new League();
-        dbc = new DBconnector();
+        //dbc = new DBconnector();
         //kun i main
 
 
 
-        teamArrayList=dbc.readTeamData();
+        //teamArrayList=dbc.readTeamData();
 
         IO io = new IO();
         UI ui = new UI();
@@ -29,33 +32,58 @@ public class Main {
 
 
 
-        dbc.writeTeamsToDataBase(knock.teamsArrayList);
-        knock.createTournament();
-        league.createTournament();
+        //dbc.writeTeamsToDataBase(knock.teamsArrayList);
+
+
         knock.updateTournament(knock.matchesArrayList);
 
         while (ui.UIInteraction!=5) {
 
                 if(ui.UIInteraction == 1) {
 
-                    //io.fileWriter();
-                    dbc.writeTeamsToDataBase(knock.teamsArrayList);
+                    io.fileWriter();
+                    //dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
                 }
                 else if(ui.UIInteraction == 2) {
+                    tourneyStyle = true;
 
-                    knock.bracketCreator(knock.matchesArrayList);
+                    if(tourneyCounter == 0){
+                        knock.createTournament();
+                    }
+
+                    tourneyCounter++;
                 }
                 else if(ui.UIInteraction == 3) {
+                    tourneyStyle = false;
 
-                    league.createTournament();
+                    if(tourneyCounter == 0){
+                        league.createTournament();
+                    }
+                    league.updateTournament(league.matchesArrayList);
+                    tourneyCounter++;
 
                 }
 
                 else if(ui.UIInteraction == 4){
-                    ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
-                    knock.updateTournament(knock.matchesArrayList);
+                    if(tourneyStyle == true){
+                        ui.userResultInput(knock.getMatchesArrayList(), knock.teamsArrayList);
+                        knock.updateTournament(knock.matchesArrayList);
+                    }
+                    else{
+                        ui.userResultInput(league.getMatchesArrayList(), league.teamsArrayList);
+                        league.updateTournament(league.matchesArrayList);
+                    }
                 }
+                else if(ui.UIInteraction == 6){
+                    if(tourneyStyle == true){
+                        knock.bracketCreator(knock.matchesArrayList);
+                    }
+                    else {
+                        league.updateTournament(league.matchesArrayList);
+                    }
+                }
+
                 ui.interact();
                 //todo: Create a 4th option for the user to change the matchresult
 

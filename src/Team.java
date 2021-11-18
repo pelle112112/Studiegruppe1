@@ -58,8 +58,9 @@ public class Team {
         System.out.println("ARRAY PARSER: " + tourney1);
         return tourney1.teamsArrayList;
     }
-    @Override
 
+
+    @Override
     public String toString() {
         return teamName;
     }
