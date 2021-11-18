@@ -9,6 +9,7 @@ public class Main {
     static KnockOut knock;
     static League league;
     static DBconnector dbc;
+    static IO io;
 
 
     static ArrayList<Team> teamArrayList;
@@ -19,30 +20,31 @@ public class Main {
         int tourneyCounter = 0;
         knock = new KnockOut();
         league = new League();
-        //dbc = new DBconnector();
+        dbc = new DBconnector();
         //kun i main
 
 
+        knock.teamArrayCreator();
+        System.out.println("TEAMARRAY: " + knock.teamsArrayList);
+        teamArrayList=dbc.readTeamData();
+        dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
-        //teamArrayList=dbc.readTeamData();
+
 
         IO io = new IO();
         UI ui = new UI();
         ui.interact();
 
+        
 
-
-        //dbc.writeTeamsToDataBase(knock.teamsArrayList);
-
-
-        knock.updateTournament(knock.matchesArrayList);
+        knock.updateTournament(knock.teamsArrayList);
 
         while (ui.UIInteraction!=5) {
 
                 if(ui.UIInteraction == 1) {
 
                     io.fileWriter();
-                    //dbc.writeTeamsToDataBase(knock.teamsArrayList);
+                    dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
                 }
                 else if(ui.UIInteraction == 2) {

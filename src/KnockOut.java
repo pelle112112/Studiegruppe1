@@ -26,6 +26,13 @@ public class KnockOut extends Tournament{
 
     }
 
+    public ArrayList teamArrayCreator() throws FileNotFoundException {
+
+        teamsArrayList = io.fileScanner();
+
+        return teamsArrayList;
+    }
+
     public void bracketCreator(ArrayList matches){
 
         int matchesLeft = 15, counter = 1, arrayCounter= 7, arrayCounter2 = 11;

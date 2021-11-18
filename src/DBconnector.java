@@ -19,7 +19,7 @@ import java.util.ArrayList;
         //Hvad hedder Schema, som den forsøger at connecte til? Tournament
         //  Database credentials
         private static final String USER = "root";
-        private static final String PASS = "snr94sps";
+        private static final String PASS = "pellepelle";
 
 
         private Connection conn = null;
@@ -54,7 +54,8 @@ import java.util.ArrayList;
 
             try {
                 conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                String sqlStringDerSkalUdføres = "INSERT INTO Team (teamName, Player1, Player2) VALUES(?,?,?)";
+
+                String sqlStringDerSkalUdføres = "INSERT IGNORE INTO Team (teamName, Player1, Player2) VALUES(?,?,?)";
 
                 int i=0;
                 PreparedStatement prep = conn.prepareStatement(sqlStringDerSkalUdføres);
