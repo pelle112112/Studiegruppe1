@@ -19,7 +19,6 @@ public class League extends Tournament{
         int ID = 1;
         ligaStilling = teamsArrayList;
 
-        //todo: The loop has to be changed so it works for more or less than 16 teams
 
         for(int counter = 0; counter+1 <= teamsArrayList.size(); counter++){
             for(int i = counter+1; i+1 <= teamsArrayList.size(); i++) {
@@ -78,10 +77,7 @@ public class League extends Tournament{
         
     }
 
-    @Override
-    public void addTeamtoArraylist(Team team) {
 
-    }
 
     public void matchPointReset(){
         for(int i = 0; i<matchesArrayList.size(); i++){

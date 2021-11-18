@@ -44,21 +44,18 @@ public class Team {
         return player2;
     }
 
-    void readTeamFromFile(){
-
-    }
-    void createTeam(int tmpID, String tmpTeamName, String tmpPlayer1Name, String tmpPlayer2Name){
+    /*void createTeam(int tmpID, String tmpTeamName, String tmpPlayer1Name, String tmpPlayer2Name){
 
         Team team = new Team(tmpTeamName, tmpPlayer1Name, tmpPlayer2Name, tmpID);
         tourney1.addTeamtoArraylist(team);
         System.out.println("Team: " + tmpID + " " + tourney1.toString());
-    }
+    }*/
 
-    ArrayList<Team> arrayParser (){
+    /*ArrayList<Team> arrayParser (){
         System.out.println("ARRAY PARSER: " + tourney1);
         return tourney1.teamsArrayList;
     }
-
+*/
 
     @Override
     public String toString() {

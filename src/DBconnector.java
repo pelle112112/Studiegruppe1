@@ -50,12 +50,11 @@ import java.util.ArrayList;
 
         public void writeTeamsToDataBase(ArrayList<Team> arrayListOfTeams) {
             Connection conn = null;
-            System.out.println(" Team Name: "+arrayListOfTeams.get(1).teamName);
 
             try {
                 conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-                String sqlStringDerSkalUdføres = "INSERT IGNORE INTO Team (teamName, Player1, Player2) VALUES(?,?,?)";
+                String sqlStringDerSkalUdføres = "REPLACE INTO Team (teamName, Player1, Player2) VALUES(?,?,?)";
 
                 int i=0;
                 PreparedStatement prep = conn.prepareStatement(sqlStringDerSkalUdføres);
@@ -65,7 +64,6 @@ import java.util.ArrayList;
                     prep.setString(2,team.player1);
                     prep.setString(3,team.player2);
                     prep.addBatch();
-                    System.out.println("has been inserted");
                     i++;
 
                 }
@@ -114,7 +112,7 @@ import java.util.ArrayList;
 
                     dbTeamArray.add(new Team (teamName, Player1, Player2,i+1));
                     i++;
-                    System.out.println(teamName);
+
                 }
                 //STEP 6: Clean-up environment
                 rs.close();

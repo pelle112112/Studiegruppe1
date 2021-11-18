@@ -48,8 +48,6 @@ public class IO {
         scanner.useDelimiter(",");
         while (scanner.hasNextLine()) {
             ID = scanner.nextInt() + 1;
-            //HVORFOR SKAL JEG BRUGE DEN HER STRING FOR AT LOOPET IKKE STOPPER?!
-            nextLine = scanner.nextLine();
         }
 
         FileWriter filewriter = new FileWriter(file, true);

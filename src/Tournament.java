@@ -13,8 +13,6 @@ public abstract class Tournament {
 
     public abstract void updateTournament(ArrayList matches) throws FileNotFoundException;
 
-    public abstract void addTeamtoArraylist(Team team);
-
 
 
 

@@ -21,11 +21,9 @@ public class Main {
         knock = new KnockOut();
         league = new League();
         dbc = new DBconnector();
-        //kun i main
 
 
         knock.teamArrayCreator();
-        System.out.println("TEAMARRAY: " + knock.teamsArrayList);
         teamArrayList=dbc.readTeamData();
         dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
@@ -35,7 +33,7 @@ public class Main {
         UI ui = new UI();
         ui.interact();
 
-        
+
 
         knock.updateTournament(knock.teamsArrayList);
 
@@ -44,7 +42,8 @@ public class Main {
                 if(ui.UIInteraction == 1) {
 
                     io.fileWriter();
-                    dbc.writeTeamsToDataBase(knock.teamsArrayList);
+                    System.out.println("You have written to the file...");
+                    //dbc.writeTeamsToDataBase(knock.teamsArrayList);
 
                 }
                 else if(ui.UIInteraction == 2) {
@@ -77,6 +76,9 @@ public class Main {
                         league.updateTournament(league.matchesArrayList);
                     }
                 }
+                else if(ui.UIInteraction == 5){
+                    System.exit(0);
+                }
                 else if(ui.UIInteraction == 6){
                     if(tourneyStyle == true){
                         knock.bracketCreator(knock.matchesArrayList);
@@ -87,7 +89,6 @@ public class Main {
                 }
 
                 ui.interact();
-                //todo: Create a 4th option for the user to change the matchresult
 
         }
     }

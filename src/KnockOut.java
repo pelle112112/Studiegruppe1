@@ -35,8 +35,8 @@ public class KnockOut extends Tournament{
 
     public void bracketCreator(ArrayList matches){
 
-        int matchesLeft = 15, counter = 1, arrayCounter= 7, arrayCounter2 = 11;
-        String team1 = "", team2 = "", winner = "", winner2 = "";
+        int counter = 1, arrayCounter= 7;
+        String team1 = "", team2 = "", winner = "";
 
         ArrayList<String> vinderArray = new ArrayList();
 
@@ -48,6 +48,9 @@ public class KnockOut extends Tournament{
 
                 if(matchesArrayList.get(i).winner != null){
                     vinderArray.set(i, matchesArrayList.get(i).winner.teamName);
+                }
+                else{
+                    vinderArray.set(i, "ingen");
                 }
 
             }
@@ -130,9 +133,7 @@ public class KnockOut extends Tournament{
                 team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
                 team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
                 winner = matchesArrayList.get(i).winner.teamName;
-                if (i < 4) {
-                    winner2 = matchesArrayList.get(i+8).winner.teamName;
-                }
+
 
                 for(int y = 0; y < 16; y++){
                     if(team1.length() < 13){
@@ -172,9 +173,7 @@ public class KnockOut extends Tournament{
                 team1 = ((Match)matchesArrayList.get(i)).team1.teamName;
                 team2 = ((Match)matchesArrayList.get(i)).team2.teamName;
                 winner = matchesArrayList.get(i).winner.teamName;
-                if (i < 4) {
-                    winner2 = matchesArrayList.get(i+8).winner.teamName;
-                }
+
 
                 for(int y = 0; y < 16; y++){
                     if(team1.length() < 13){
@@ -285,11 +284,6 @@ public class KnockOut extends Tournament{
 
 
         }
-    }
-
-    @Override
-    public void addTeamtoArraylist(Team team) {
-        teamsArrayList.add(team);
     }
 
 
